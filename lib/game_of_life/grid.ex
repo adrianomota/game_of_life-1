@@ -28,25 +28,9 @@ defmodule GameOfLife.Grid do
     |> elem(y - 1)
   end
 
-  def will_thrive?(grid, x, y) do
-    neighbours = active_neighbours(grid, x, y)
-    active? = active?(grid, x, y)
-
-    cond do
-      # Qualquer célula viva com menos de dois vizinhos vivos morre de solidão.
-      active? and neighbours < 2 ->
-        false
-      # Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.
-      active? and neighbours > 3 ->
-        false
-      # Qualquer célula morta com exatamente três vizinhos vivos se torna uma célula viva.
-      not active? and neighbours == 3 ->
-        true
-      # Qualquer célula viva com dois ou três vizinhos vivos continua no mesmo estado para a próxima geração.
-      active? and neighbours in 2..3 ->
-        true
-      not active? ->
-        false
+  def cells_to_analyze(grid) do
+    for x <- 1..grid.size, y <- 1..grid.size do
+      {x, y}
     end
   end
 
@@ -67,7 +51,7 @@ defmodule GameOfLife.Grid do
     %__MODULE__{grid | cells: cells}
   end
 
-  defp active_neighbours(grid, x, y) do
+  def active_neighbours(grid, x, y) do
     grid
     |> neighbours(x, y) # [{pos_integer, pos_integer}]
     |> Enum.map(fn {x2, y2} -> active?(grid, x2, y2) end) # [true, false]

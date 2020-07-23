@@ -56,36 +56,4 @@ defmodule GameOfLife.GridTest do
     }
     assert expected_grid == grid.cells
   end
-
-  test "glider will work as expected" do
-    size = 5
-    grid =
-      Grid.new(size)
-      |> Grid.activate(3, 1)
-      |> Grid.activate(4, 2)
-      |> Grid.activate(2, 3)
-      |> Grid.activate(3, 3)
-      |> Grid.activate(4, 3)
-
-    expected =
-      Grid.new(size)
-      |> Grid.activate(2, 2)
-      |> Grid.activate(4, 2)
-      |> Grid.activate(3, 3)
-      |> Grid.activate(4, 3)
-      |> Grid.activate(3, 4)
-
-    result = for x <- 1..size do
-      for y <- 1..size do
-        Grid.will_thrive?(grid, x, y)
-      end
-    end
-
-    result =
-      result
-      |> Enum.map(&List.to_tuple/1)
-      |> List.to_tuple()
-
-    assert expected.cells == result
-  end
 end
