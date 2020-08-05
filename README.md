@@ -1,21 +1,13 @@
 # GameOfLife
 
-**TODO: Add description**
+O Jogo da Vida de Conway eh um sistema de automacao celular usado para exemplificar como a interacao entre entidades influencia na sua progressao evolutiva.
 
-## Installation
+O programa se trata de uma simulacao de um mundo bi-dimensional onde cada entidade (celula) ocupa um espaco no plano cartesiano e se encontra em estado ativo ou inativo.
+![TODO: Imagem]()
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `game_of_life` to your list of dependencies in `mix.exs`:
+## Running
 
-```elixir
-def deps do
-  [
-    {:game_of_life, "~> 0.1.0"}
-  ]
-end
-```
+Cada simulacao pode ser iniciada rodando `GameOfLife.Game.new(options)` onde `options` eh uma Keyword com as seguintes chaves/opcoes:
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/game_of_life](https://hexdocs.pm/game_of_life).
-
+| Opcao   | Tipo          | Requerido ? | Descricao |
+| `:size` | `pos_integer` | Nao         | O tamanho de um lado no plano simulado |
